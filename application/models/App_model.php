@@ -10,7 +10,7 @@ class App_model extends CI_Model
     $nik_clear = stripslashes(strip_tags(htmlspecialchars($nik, ENT_QUOTES)));
     $pass_clear = stripslashes(strip_tags(htmlspecialchars($pass, ENT_QUOTES)));
     if ($this->getUser($nik_clear, $pass_clear)) {
-      
+
     }
   }
 
