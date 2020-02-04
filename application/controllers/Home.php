@@ -21,10 +21,10 @@ class Home extends CI_Controller
   {
     $data = array();
     $data["title"]   = "";
-    if ($this->emplid != "") {
+    if ($this->emplid == "") {
       redirect('auth');
     } else {
-      $this->load->view('login', $data);
+      $this->load->view('home', $data);
     }
   }
 }
