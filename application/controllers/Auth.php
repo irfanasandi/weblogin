@@ -5,7 +5,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Auth extends CI_Controller
 {
 
-
   public function __construct()
   {
     parent::__construct();
@@ -18,13 +17,27 @@ class Auth extends CI_Controller
   {
     $nik = trim($this->db->escape_str($this->input->post('nik')));
     $pass  = $this->db->escape_str($this->input->post('password'));
-    $hasil = $this->app_model->login($nik, $pass);
-
-    if (count($hasil) > 0) {
-      echo "OK";
+    $user = $this->app_model->login($nik, $pass)->result();
+    print_r($user[0]->nik);
+    die();
+    // var_dump($hasil->result());
+    if (count($user) > 0) {
+      $active = $this->app_model->getActive($user);
+      if ($active) {
+        $role = $this->app_model->getRole($user);
+      } else {
+        $this->setFlashdate('msg');
+      }
     } else {
+      $this->setFlashdate('mmm');
       $this->load->view('login');
     }
+  }
+
+  function setFlashdate($msg = "")
+  {
+    echo $msg;
+    $this->load->view('login');
   }
 }
 
