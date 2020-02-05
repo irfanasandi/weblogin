@@ -12,23 +12,48 @@ class App_model extends CI_Model
     return $this->getUser($nik_clear, $pass_clear);
   }
 
-  public function getUser($nik = "", $pass = "")
+  public function getUser($nik = "")
   {
-    $query = $this->db->query("select * from user where nik = '$nik' and password = '$pass'");
+    $query = $this->db->query("select * from user where emplid = '$nik'");
 
     return $query;
   }
 
-  public function getActive($user = "")
+  public function matchPassword($nik = "", $pass = "")
   {
-    $query = "select dari hrsempltable";
-    return true;
+    $query = $this->db->query("select * from user where emplid = '$nik' and password = '$pass' ");
+    if ($query->num_rows() > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  public function getRole($id)
+  public function getPreTerminate($id = "")
   {
-    $query = $this->db->query("select * from role where id = '$id->role_id'");
+    $this->live = $this->load->database("axapta", TRUE);
+    $query = $this->live->query("select * from hrsemployeetable where emplid = '$id'");
+
+    foreach ($query->result() as $get) {
+      return $get->ERL_PRETERMINATE;
+    }
+  }
+
+  public function getRole($role_id)
+  {
+    $query = $this->db->query("select * from role where id = '$role_id'");
     return $query;
+  }
+
+  public function getAppAccess($role = "", $app = "")
+  {
+    $query = $this->db->query("select * from role_map where role_id = $role and app_id = $app");
+
+    if ($query->num_rows() > 0) {
+      return true;
+    } else {
+      return 0;
+    }
   }
 }
 

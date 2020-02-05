@@ -94,3 +94,25 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+$db['axapta'] = array(
+	'dsn'	=> '',
+	'hostname' => 'Driver={SQL Server};Server=10.1.4.55;Database=Ax_2009_Live; Uid=YESSS;Pwd=ReportYe$$$90;',
+	'username' => 'YESSS',
+	'password' => 'ReportYe$$$90',
+	'database' => 'Ax_2009_Live',
+	'dbdriver' => 'odbc',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'development'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => TRUE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);

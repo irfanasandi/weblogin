@@ -20,13 +20,25 @@ class Home extends CI_Controller
   function index()
   {
     $data = array();
-    $data["title"]   = "";
-    if ($this->emplid == "") {
-      redirect('auth');
+    $data["title"]   = "ERLANGGA ESSS";
+    if ($this->emplid != "") {
+      $this->landing();
     } else {
-      $this->load->view('home', $data);
+      $this->load->view('login', $data);
+    }
+  }
+
+  function landing()
+  {
+    $data = array();
+    $data["title"] = "Web Login";
+    // $data["header"] = $this->app_model->profile($this->emplid);
+    if ($this->emplid != "") {
+      $data["page"] = 'page/home';
+      $this->load->view('index', $data);
+    } else {
+      redirect();
     }
   }
 }
-
 /* End of file Home.php */
