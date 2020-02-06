@@ -47,8 +47,7 @@ class App_model extends CI_Model
 
   public function getAppAccess($role = "", $app = "")
   {
-    $query = $this->db->query("select * from role_map where role_id = $role and app_id = $app");
-
+    $query = $this->db->query("select * from hak_akses where role_id = $role and app_id = '$app'");
     if ($query->num_rows() > 0) {
       return true;
     } else {

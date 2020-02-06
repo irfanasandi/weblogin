@@ -20,7 +20,7 @@ class Home extends CI_Controller
   function index()
   {
     $data = array();
-    $data["title"]   = "ERLANGGA ESSS";
+    $data["title"]   = "Web Login";
     if ($this->emplid != "") {
       $this->landing();
     } else {

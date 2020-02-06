@@ -29,10 +29,10 @@ class Auth extends CI_Controller
       if ($matchingPass) {
         $terminate = $this->app_model->getPreTerminate($user[0]->emplid);
 
-        if (!$terminate) {
+        if ($terminate) {
           $role = $this->app_model->getRole($user[0]->role_id)->result();
           if (count($role) > 0) {
-            $app_id = 1;
+            $app_id = "APP01-WEBINFO";
             $access = $this->app_model->getAppAccess($role[0]->id, $app_id);
             if ($access) {
               foreach ($user as $detail) {
