@@ -35,7 +35,7 @@ class Home extends CI_Controller
     // $data["header"] = $this->app_model->profile($this->emplid);
     if ($this->emplid != "") {
       $data["page"] = 'page/home';
-      $this->load->view('index', $data);
+      $this->load->view('index2', $data);
     } else {
       redirect();
     }
