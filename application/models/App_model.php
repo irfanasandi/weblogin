@@ -5,6 +5,36 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class App_model extends CI_Model
 {
 
+  function master($master)
+  {
+    $q = $this->db->query("select * from $master");
+    return $q;
+  }
+
+  function simpan($tabel, $data)
+  {
+    $s = $this->db->insert($tabel, $data);
+    return $s;
+  }
+
+  function edit($tabel, $seleksi)
+  {
+    $query = $this->db->query("select * from $tabel where $seleksi");
+    return $query;
+  }
+
+  function update($tabel, $isi, $seleksi)
+  {
+    $this->db->where($seleksi, $isi[$seleksi]);
+    $this->db->update($tabel, $isi);
+  }
+
+  function hapus($id, $seleksi, $tabel)
+  {
+    $this->db->where($seleksi, $id);
+    $this->db->delete($tabel);
+  }
+
   public function login($nik = "", $pass = "")
   {
     $nik_clear = stripslashes(strip_tags(htmlspecialchars($nik, ENT_QUOTES)));

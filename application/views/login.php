@@ -9,11 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="<?= asset_url('favicon.png'); ?>">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo asset_url('font-awesome/4.5.0/css/font-awesome.min.css'); ?>">
+  <link rel="stylesheet" href="<?= asset_url('plugins/fontawesome-free/css/all.min.css'); ?>">
   <!-- Ionicons -->
   <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="<?php echo asset_url('plugin/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo asset_url('plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo asset_url('css/adminlte.min.css') ?>">
   <!-- Google Font: Source Sans Pro -->
@@ -37,7 +37,7 @@
           ' . $this->session->flashdata('error_login') . '
           </h5>';
         } else {
-          echo '<h5><i class="ace-icon fa fa-expeditedssl text-primary"></i>	Enter your login information</h5>';
+          echo '<h5><i class="fa fa-expeditedssl text-primary"></i>	Enter your login information</h5>';
         }
         ?>
       </div>

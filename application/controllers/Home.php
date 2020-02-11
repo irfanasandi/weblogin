@@ -15,6 +15,8 @@ class Home extends CI_Controller
     $this->bu    = $this->session->userdata('bu');
     $this->levelid  = $this->session->userdata('levelid');
     $this->sessionid = $this->session->userdata('sessionid');
+
+    $this->load->model('app_model');
   }
 
   function index()
@@ -34,11 +36,18 @@ class Home extends CI_Controller
     $data["title"] = "Web Login";
     // $data["header"] = $this->app_model->profile($this->emplid);
     if ($this->emplid != "") {
+      $data['role'] = $this->app_model->master('role');
+      $data['apps'] = $this->app_model->master('apps');
+      $data['modules'] = $this->app_model->master('module');
       $data["page"] = 'page/home';
       $this->load->view('index2', $data);
     } else {
       redirect();
     }
+  }
+
+  public function selectRole()
+  {
   }
 }
 /* End of file Home.php */
