@@ -11,10 +11,10 @@ class Home_model extends CI_Model
     parent::__construct();
   }
 
-  public function index()
-  {
-    return true;
-  }
+  // public function getAccess($role)
+  // {
+  //   $this->db->query();
+  // }
 }
 
 /* End of file Home_model.php */

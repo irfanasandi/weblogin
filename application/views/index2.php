@@ -22,7 +22,7 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed text-sm">
   <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-light">
@@ -722,6 +722,11 @@
 
   <!-- ChartJS -->
   <script src="<?php echo asset_url('plugins/chart.js/Chart.min.js') ?>"></script>
+
+  <!-- base_url -->
+  <script>
+    const base_url = '<?php echo base_url() ?>';
+  </script>
 
   <!-- PAGE SCRIPTS -->
   <script src="<?php echo asset_url('js/pages/home.js') ?>"></script>

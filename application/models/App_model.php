@@ -10,11 +10,28 @@ class App_model extends CI_Model
     $q = $this->db->query("select * from $master");
     return $q;
   }
+  function manual_query($query)
+  {
+    $q = $this->db->query($query);
+    return $q;
+  }
 
   function simpan($tabel, $data)
   {
     $s = $this->db->insert($tabel, $data);
     return $s;
+  }
+
+  function getWhere($tabel, $kolom, $seleksi)
+  {
+    $this->db->get_where($tabel, array($kolom => $seleksi));
+  }
+
+  public function getWhereAnd($tabel, $kolom, $kolom2, $seleksi)
+  {
+    $this->db->where($kolom, $seleksi[$kolom]);
+    $this->db->where($kolom2, $seleksi[$kolom2]);
+    return $this->db->from($tabel);
   }
 
   function edit($tabel, $seleksi)
@@ -26,6 +43,13 @@ class App_model extends CI_Model
   function update($tabel, $isi, $seleksi)
   {
     $this->db->where($seleksi, $isi[$seleksi]);
+    $this->db->update($tabel, $isi);
+  }
+  
+  function update2($tabel, $isi, $seleksi, $seleksi2)
+  {
+    $this->db->where($seleksi, $isi[$seleksi]);
+    $this->db->where($seleksi, $isi[$seleksi2]);
     $this->db->update($tabel, $isi);
   }
 

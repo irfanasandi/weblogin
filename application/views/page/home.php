@@ -14,7 +14,7 @@
           <ul class="nav nav-pills flex-column">
             <?php foreach ($role->result() as $val) { ?>
               <li class="nav-item role">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" value="<?= $val->id; ?>">
                   <i class="fas fa-inbox"></i>
                   <?= $val->name; ?>
                 </a>
@@ -28,7 +28,7 @@
 
     </div>
     <!-- /.col -->
-    <div class="col-md-9">
+    <div class="col-md-9 container">
       <?php
       foreach ($apps->result() as $app) {
       ?>
@@ -36,7 +36,7 @@
           <div class="card-header">
             <h3 class="card-title pr-2"><?= $app->name; ?></h3>
             <div class="icheck-default d-inline">
-              <input type="checkbox" id="<?= $app->app_id; ?>" checked="">
+              <input type="checkbox" id="<?= $app->app_id; ?>">
               <label for="<?= $app->app_id; ?>">
               </label>
             </div>
@@ -45,7 +45,7 @@
             <!-- Minimal style -->
             <div class="row">
               <div class="col-md-12">
-                <table class="table table-sm">
+                <table class="table table-sm table-hover text-center">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -65,34 +65,41 @@
                           <td><?= $no; ?></td>
                           <td>
                             <div class="icheck-primary d-inline">
-                              <input type="checkbox" id="checkAll<?= $module->name; ?>">
-                              <label for="checkAll<?= $module->name; ?>">
+                              <input type="checkbox" id="checkAll<?= $module->id; ?>" class="checkAll" data-check='<?= $module->id; ?>'>
+                              <label for="checkAll<?= $module->id; ?>">
                               </label>
                             </div>
                           </td>
                           <td><?= $module->description; ?></td>
-                          <td>
+                          <td id="crud">
+                            <?php
+                            foreach ($akses->result() as $det) {
+                              if ($det->module_id === $module->id) {
+                                $crud = $det;
+                              }
+                            }
+                            ?>
                             <div class="icheck-primary d-inline  mr-3">
-                              <input type="checkbox" id="create<?= $module->name; ?>">
-                              <label for="create<?= $module->name; ?>">
+                              <input type="checkbox" id="create<?= $module->id; ?>">
+                              <label for="create<?= $module->id; ?>">
                                 Create
                               </label>
                             </div>
                             <div class="icheck-primary d-inline mr-3">
-                              <input type="checkbox" id="read<?= $module->name; ?>">
-                              <label for="read<?= $module->name; ?>">
+                              <input type="checkbox" id="read<?= $module->id; ?>">
+                              <label for="read<?= $module->id; ?>">
                                 Read
                               </label>
                             </div>
                             <div class="icheck-primary d-inline mr-3">
-                              <input type="checkbox" id="update<?= $module->name; ?>">
-                              <label for="update<?= $module->name; ?>">
+                              <input type="checkbox" id="update<?= $module->id; ?>">
+                              <label for="update<?= $module->id; ?>">
                                 Update
                               </label>
                             </div>
                             <div class="icheck-primary d-inline ">
-                              <input type="checkbox" id="delete<?= $module->name; ?>">
-                              <label for="delete<?= $module->name; ?>">
+                              <input type="checkbox" id="delete<?= $module->id; ?>">
+                              <label for="delete<?= $module->id; ?>">
                                 Delete
                               </label>
                             </div>
