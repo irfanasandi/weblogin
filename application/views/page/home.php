@@ -65,40 +65,33 @@
                           <td><?= $no; ?></td>
                           <td>
                             <div class="icheck-primary d-inline">
-                              <input type="checkbox" id="checkAll<?= $module->id; ?>" class="checkAll" data-check='<?= $module->id; ?>'>
+                              <input type="checkbox" id="checkAll<?= $module->id; ?>" class="checkAll" data-module='<?= $module->id; ?>' data-app='<?= $module->app_id; ?>'>
                               <label for="checkAll<?= $module->id; ?>">
                               </label>
                             </div>
                           </td>
                           <td><?= $module->description; ?></td>
-                          <td id="crud">
-                            <?php
-                            foreach ($akses->result() as $det) {
-                              if ($det->module_id === $module->id) {
-                                $crud = $det;
-                              }
-                            }
-                            ?>
+                          <td id="crud-col" data-app="<?= $module->app_id; ?>" data-module='<?= $module->id; ?>'>
                             <div class="icheck-primary d-inline  mr-3">
-                              <input type="checkbox" id="create<?= $module->id; ?>">
+                              <input type="checkbox" id="create<?= $module->id; ?>" class="crud" data-crud='a_create'>
                               <label for="create<?= $module->id; ?>">
                                 Create
                               </label>
                             </div>
                             <div class="icheck-primary d-inline mr-3">
-                              <input type="checkbox" id="read<?= $module->id; ?>">
+                              <input type="checkbox" id="read<?= $module->id; ?>" class="crud" data-crud='a_read'>
                               <label for="read<?= $module->id; ?>">
                                 Read
                               </label>
                             </div>
                             <div class="icheck-primary d-inline mr-3">
-                              <input type="checkbox" id="update<?= $module->id; ?>">
+                              <input type="checkbox" id="update<?= $module->id; ?>" class="crud" data-crud='a_update'>
                               <label for="update<?= $module->id; ?>">
                                 Update
                               </label>
                             </div>
-                            <div class="icheck-primary d-inline ">
-                              <input type="checkbox" id="delete<?= $module->id; ?>">
+                            <div class="icheck-primary d-inline">
+                              <input type="checkbox" id="delete<?= $module->id; ?>" class="crud" data-crud='a_delete'>
                               <label for="delete<?= $module->id; ?>">
                                 Delete
                               </label>

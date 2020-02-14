@@ -29,9 +29,10 @@ class App_model extends CI_Model
 
   public function getWhereAnd($tabel, $kolom, $kolom2, $seleksi)
   {
+    $this->db->select('*');
     $this->db->where($kolom, $seleksi[$kolom]);
     $this->db->where($kolom2, $seleksi[$kolom2]);
-    return $this->db->from($tabel);
+    return $this->db->get($tabel);
   }
 
   function edit($tabel, $seleksi)
@@ -45,11 +46,11 @@ class App_model extends CI_Model
     $this->db->where($seleksi, $isi[$seleksi]);
     $this->db->update($tabel, $isi);
   }
-  
+
   function update2($tabel, $isi, $seleksi, $seleksi2)
   {
     $this->db->where($seleksi, $isi[$seleksi]);
-    $this->db->where($seleksi, $isi[$seleksi2]);
+    $this->db->where($seleksi2, $isi[$seleksi2]);
     $this->db->update($tabel, $isi);
   }
 

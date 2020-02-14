@@ -88,24 +88,64 @@ function updateUI(data) {
   }
 }
 
+function updateCheckAll(e) {
+  const td = e.parentElement.parentElement;
+  const crud = td.querySelectorAll(".crud");
+  const all = td.parentElement.querySelector(".checkAll");
+
+  const unCheckArr = [...crud].filter(cek => !cek.checked);
+  if (unCheckArr.length > 0) {
+    all.checked = false;
+  } else {
+    all.checked = true;
+  }
+}
+
 // ! update to database
-function updatePerModule(module, value) {
-  const activeRole = roleGroup.querySelector(".active").getAttribute("value");
+function updatePerModule(module, value, app_id) {
+  const activeRole = roleGroup.querySelector(".active");
   if (activeRole) {
     $.ajax({
       type: "post",
       url: `${base_url}home/updatePerModule`,
       data: {
-        role: activeRole,
+        role: activeRole.getAttribute("value"),
         module: module,
-        value: value
+        value: value,
+        app_id: app_id
       },
-      dataType: "json",
+      dataType: "json"
+    });
+  }
+}
+
+function singleUpdate(module_id, app_id, crud, checked) {
+  const activeRole = roleGroup.querySelector(".active");
+
+  if (activeRole) {
+    $.ajax({
+      type: "post",
+      url: `${base_url}home/singleUpdate`,
+      data: {
+        module_id: module_id,
+        app_id: app_id,
+        crud: crud,
+        role_id: activeRole.getAttribute("value"),
+        checked: +checked
+      },
+      dataType: "dataType",
       success: function(response) {
         console.log(response);
       }
     });
   }
+}
+
+function allAccess(row, checked) {
+  const tr = row.target.parentElement.parentElement.parentElement;
+
+  const check = tr.querySelectorAll("input");
+  check.forEach(e => (e.checked = checked));
 }
 
 //? event listener
@@ -117,14 +157,28 @@ roleGroup.addEventListener("click", e => {
   }
 });
 
-container.addEventListener("click", e => {
+container.addEventListener("click", function(e) {
   if (e.target.classList.contains("checkAll")) {
-    const module_id = e.target.getAttribute("data-check");
+    const module_id = e.target.getAttribute("data-module");
+    const app_id = e.target.getAttribute("data-app");
     if (e.target.checked) {
-      updatePerModule(module_id, 1);
+      updatePerModule(module_id, 1, app_id);
+      allAccess(e, true);
     } else {
-      updatePerModule(module_id, 0);
+      updatePerModule(module_id, 0, app_id);
+      allAccess(e, false);
     }
   }
+
+  if (e.target.classList.contains("crud")) {
+    const row = e.target.parentElement.parentElement;
+    const module_id = row.getAttribute("data-module");
+    const app_id = row.getAttribute("data-app");
+    const crud = e.target.getAttribute("data-crud");
+
+    singleUpdate(module_id, app_id, crud, e.target.checked);
+    updateCheckAll(e.target);
+  }
 });
-//? end
+
+//? end event listener

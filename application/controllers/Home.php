@@ -51,7 +51,16 @@ class Home extends CI_Controller
   public function get_akses()
   {
     $roleId = $this->input->post('role');
-    $data = $this->app_model->edit('hak_akses', 'id =' . $roleId)->result();
+    $data = $this->app_model->edit('hak_akses', 'role_id =' . $roleId)->result();
+    echo json_encode($data);
+  }
+
+  public function get_akses_module()
+  {
+    $role_id = $this->input->post('role');
+    $module_id = $this->input->post('module');
+
+    $data = $this->app_model->edit('hak_akses', 'role_id =' . $role_id . 'and module_id =' . $module_id)->result();
     echo json_encode($data);
   }
 
@@ -60,16 +69,37 @@ class Home extends CI_Controller
     $value = $this->input->post('value');
     $up['role_id'] = $this->input->post('role');
     $up['module_id'] = $this->input->post('module');
+    $up['app_id'] = $this->input->post('app_id');
     $up['a_create'] = $value;
     $up['a_read'] = $value;
     $up['a_update'] = $value;
     $up['a_delete'] = $value;
 
-    // $select = $this->app_model->manual_query("select * from hak_akses where role_id = " . $up['role_id'] . " and module_id =" . $up['module_id'] . "");
+    $select = $this->app_model->getWhereAnd('hak_akses', 'role_id', 'module_id', $up);
+
+    if ($select->num_rows() > 0) {
+      $this->app_model->update2('hak_akses', $up, 'role_id', 'module_id');
+    } else {
+      $this->app_model->simpan('hak_akses', $up);
+    }
+    echo json_encode('ok');
+  }
+
+  public function singleUpdate()
+  {
+    $up['module_id'] = $this->input->post('module_id');
+    $up['app_id'] = $this->input->post('app_id');
+    $up['role_id'] = $this->input->post('role_id');
+    $up[$this->input->post('crud')] = $this->input->post('checked');
+
 
     $select = $this->app_model->getWhereAnd('hak_akses', 'role_id', 'module_id', $up);
-    // $data = $this->app_model->update2('hak_akses', $up, 'role_id', 'module_id');
-    print_r($this->db->last_query());
+
+    if ($select->num_rows() > 0) {
+      $this->app_model->update2('hak_akses', $up, 'role_id', 'module_id');
+    }
+
+    echo ($this->db->last_query());
   }
 }
 /* End of file Home.php */
