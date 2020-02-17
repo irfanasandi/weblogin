@@ -9,9 +9,8 @@ class Home extends CI_Controller
   {
     parent::__construct();
 
-    $this->username  = $this->session->userdata('username');
+    $this->name  = $this->session->userdata('name');
     $this->emplid  = $this->session->userdata('emplid');
-    $this->name    = $this->session->userdata('name');
     $this->bu    = $this->session->userdata('bu');
     $this->levelid  = $this->session->userdata('levelid');
     $this->sessionid = $this->session->userdata('sessionid');
@@ -23,11 +22,21 @@ class Home extends CI_Controller
   function index()
   {
     $data = array();
-    $data["title"]   = "Web Login";
+    $data["title"]   = "Management Access";
     if ($this->emplid != "") {
       $this->landing();
     } else {
       $this->load->view('login', $data);
+    }
+  }
+
+  function admin()
+  {
+    $data['title'] = "Login Admin";
+    if ($this->emplid != "") {
+      $this->landing();
+    } else {
+      $this->load->view('login_admin', $data);
     }
   }
 

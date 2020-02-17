@@ -3,11 +3,22 @@ const roleIcons = ["file-alt", "inbox", "calendar"];
 const table = document.querySelectorAll(".table");
 const roleGroup = document.querySelector(".roleGroup");
 const container = document.querySelector(".container");
+const appBox = document.querySelectorAll(".app-box");
+
+firstRole();
 
 role.forEach((val, i) => {
   const icon = val.querySelector("i");
   icon.classList = `fa fa-${roleIcons[i]}`;
 });
+
+// * hidden check per app
+appBox.forEach(app => (app.style.visibility = "hidden"));
+
+function firstRole() {
+  const firstRole = role[0].firstElementChild;
+  getActive(firstRole);
+}
 
 //? functions
 function removeActive() {
@@ -150,6 +161,7 @@ function allAccess(row, checked) {
 
 //? event listener
 roleGroup.addEventListener("click", e => {
+  e.preventDefault();
   if (e.target.classList.contains("nav-link")) {
     removeActive();
     deleteChecked();

@@ -35,13 +35,13 @@
         <div class="card card-primary">
           <div class="card-header">
             <h3 class="card-title pr-2"><?= $app->name; ?></h3>
-            <div class="icheck-default d-inline">
+            <div class="icheck-default d-inline app-box">
               <input type="checkbox" id="<?= $app->app_id; ?>">
               <label for="<?= $app->app_id; ?>">
               </label>
             </div>
           </div>
-          <div class="card-body">
+          <div class="card-body sm-text">
             <!-- Minimal style -->
             <div class="row">
               <div class="col-md-12">
