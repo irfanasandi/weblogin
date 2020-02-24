@@ -24,7 +24,7 @@ class App_model extends CI_Model
 
   function getWhere($tabel, $kolom, $seleksi)
   {
-    $this->db->get_where($tabel, array($kolom => $seleksi));
+    return $this->db->get_where($tabel, array($kolom => $seleksi));
   }
 
   public function getWhereAnd($tabel, $kolom, $kolom2, $seleksi)

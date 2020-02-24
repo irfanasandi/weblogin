@@ -9,7 +9,7 @@
   <meta name="description" content="User login page" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <link rel="stylesheet" href="<?php echo asset_url('css/bootstrap.min.css'); ?>" />
-  <link rel="stylesheet" href="<?php echo asset_url('font-awesome/4.5.0/css/font-awesome.min.css'); ?>" />
+  <link rel="stylesheet" href="<?= asset_url('plugins/fontawesome-free/css/all.min.css'); ?>">
   <link rel="stylesheet" href="<?php echo asset_url('css/fonts.googleapis.com.css'); ?>" />
   <link rel="stylesheet" href="<?php echo asset_url('css/ace.min.css'); ?>" />
   <link rel="stylesheet" href="<?php echo asset_url('css/ace-rtl.min.css'); ?>" />
@@ -25,7 +25,7 @@
               <br /><br /><br /><br />
               <h1>
                 <span class="white" id="id-text2"><i class="fa fa-lock"></i></span>
-                <span class="white" id="id-text2">Smart Login System</span>
+                <span class="white" id="id-text2">Administrator</span>
               </h1>
 
             </div>
@@ -39,12 +39,12 @@
                     <?php
                     if ($this->session->flashdata('error_login')) {
                       echo '<h4 class="header red lighter bigger">
-														<i class="fa fa-exclamation-triangle"></i>
+														<i class="fas fa-user-lock"></i>
 														' . $this->session->flashdata('error_login') . '
 													</h4>';
                     } else {
                       echo '<h4 class="header blue lighter bigger">
-														<i class="ace-icon fa fa-expeditedssl"></i>
+                            <i class="fas fa-user-lock"></i>
 														Enter your login information
 													</h4>';
                     }

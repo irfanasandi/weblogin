@@ -65,16 +65,29 @@ class Auth extends CI_Controller
     $data['username'] = trim($this->db->escape_str($this->input->post('username')));
     $data['password']  = $this->db->escape_str($this->input->post('password'));
 
-    $username = $this->app_model->getWhere('admin', 'username', $data['username']);
-    echo json_encode($username);
-    die();
-    if ($username->num_rows() > 0) {
+    $user = $this->app_model->getWhere('admin', 'username', $data['username']);
+
+    if ($user->num_rows() > 0) {
       $pass = $this->app_model->getWhereAnd('admin', 'username', 'password', $data);
-      if ($pass->num_rows() > 0) {
-        echo json_encode($pass->result());
+      if ($pass->num_rows() < 0) {
+        $this->setErrorMessageAdmin("Invalid Password");
+      } else {
+        foreach ($user->result() as $detail) {
+          if ($detail->active != 1) {
+            $this->setErrorMessageAdmin("User sudah tidak aktif");
+          }
+          $arr = array(
+            'bu' => $detail->bu,
+            'roleid' => $detail->role_id,
+            'name' => $detail->name,
+            'admin' => $detail->id
+          );
+          $this->session->set_userdata($arr);
+          redirect('admin');
+        }
       }
     } else {
-      $this->setErrorMessage('Invalid Username');
+      $this->setErrorMessageAdmin('Invalid Username');
     }
   }
 
@@ -82,6 +95,12 @@ class Auth extends CI_Controller
   {
     $this->session->set_flashdata("error_login", $msg);
     redirect();
+  }
+
+  function setErrorMessageAdmin($msg = "")
+  {
+    $this->session->set_flashdata("error_login", $msg);
+    redirect("admin");
   }
 
   public function logout()

@@ -9,12 +9,15 @@ class Home extends CI_Controller
   {
     parent::__construct();
 
+    $this->navigasi->set_active_menu('dashboard');
+
     $this->name  = $this->session->userdata('name');
     $this->emplid  = $this->session->userdata('emplid');
     $this->bu    = $this->session->userdata('bu');
     $this->levelid  = $this->session->userdata('levelid');
     $this->sessionid = $this->session->userdata('sessionid');
     $this->user_id = $this->session->userdata('user_id');
+    $this->admin = $this->session->userdata('admin');
 
     $this->load->model('app_model');
   }
@@ -33,7 +36,7 @@ class Home extends CI_Controller
   function admin()
   {
     $data['title'] = "Login Admin";
-    if ($this->emplid != "") {
+    if ($this->admin != "") {
       $this->landing();
     } else {
       $this->load->view('login_admin', $data);
@@ -45,7 +48,7 @@ class Home extends CI_Controller
     $data = array();
     $data["title"] = "Web Login";
     // $data["header"] = $this->app_model->profile($this->emplid);
-    if ($this->emplid != "") {
+    if ($this->emplid != "" || $this->admin != "") {
       $data['role'] = $this->app_model->master('role');
       $data['apps'] = $this->app_model->master('apps');
       $data['modules'] = $this->app_model->master('module');

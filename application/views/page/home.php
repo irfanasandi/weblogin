@@ -115,3 +115,6 @@
   </div>
   <!-- /.row -->
 </div><!-- /.container-fluid -->
+
+<!-- PAGE SCRIPTS -->
+<script src="<?php echo asset_url('js/pages/home.js') ?>"></script>

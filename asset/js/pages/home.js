@@ -4,6 +4,7 @@ const table = document.querySelectorAll(".table");
 const roleGroup = document.querySelector(".roleGroup");
 const container = document.querySelector(".container");
 const appBox = document.querySelectorAll(".app-box");
+const menu = document.getElementById("menu-nav");
 
 firstRole();
 
@@ -192,5 +193,6 @@ container.addEventListener("click", function(e) {
     updateCheckAll(e.target);
   }
 });
+
 
 //? end event listener

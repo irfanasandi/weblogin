@@ -13,13 +13,41 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?php echo asset_url('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo asset_url('css/adminlte.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo asset_url('css/adminlte.css') ?>">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="<?php echo asset_url('plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
 
+  <!-- REQUIRED SCRIPTS -->
+  <!-- jQuery -->
+  <script src="<?php echo asset_url('plugins/jquery/jquery.min.js'); ?>"></script>
+  <!-- Bootstrap -->
+  <script src="<?php echo asset_url('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+  <!-- overlayScrollbars -->
+  <script src="<?php echo asset_url('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') ?>"></script>
+  <!-- AdminLTE App -->
+  <script src="<?php echo asset_url('js/adminlte.js') ?>"></script>
+
+  <!-- PAGE PLUGINS -->
+  <!-- jQuery Mapael -->
+  <script src="<?php echo asset_url('plugins/jquery-mousewheel/jquery.mousewheel.js') ?>"></script>
+  <script src="<?php echo asset_url('plugins/raphael/raphael.min.js') ?>"></script>
+  <script src="<?php echo asset_url('plugins/jquery-mapael/jquery.mapael.min.js') ?>"></script>
+  <script src="<?php echo asset_url('plugins/jquery-mapael/maps/usa_states.min.js') ?>"></script>
+
+  <!-- datatables -->
+  <script src="<?php echo asset_url('plugins/datatables/jquery.dataTables.js') ?>"></script>
+  <script src="<?php echo asset_url('plugins/datatables-bs4/js/dataTables.bootstrap4.js') ?>"></script>
+
+  <!-- ChartJS -->
+  <script src="<?php echo asset_url('plugins/chart.js/Chart.min.js') ?>"></script>
+
+  <!-- base_url -->
+  <script>
+    const base_url = '<?php echo base_url() ?>'
+  </script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed text-sm">
@@ -66,17 +94,17 @@
             <img src="<?php echo asset_url('img/user2-160x160.jpg') ?>" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block"><?= $this->name;; ?></a>
+            <a href="#" class="d-block"><?= $this->session->userdata('name'); ?></a>
           </div>
         </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <ul class="nav nav-pills nav-sidebar flex-column" id="menu-nav" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library -->
             <li class="nav-item">
-              <a href="#" class="nav-link active">
+              <a href="<?= base_url(); ?>" class="nav-link" id="dashboard">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -84,67 +112,12 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="<?= base_url("app"); ?>" class="nav-link" id="applications">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                  Widgets
-                  <span class="right badge badge-danger">New</span>
+                  Applications
                 </p>
               </a>
-            </li>
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
-                <p>
-                  Layout Options
-                  <i class="fas fa-angle-left right"></i>
-                  <span class="badge badge-info right">6</span>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/layout/top-nav.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Top Navigation</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Top Navigation + Sidebar</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/layout/boxed.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Boxed</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Fixed Sidebar</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Fixed Navbar</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/layout/fixed-footer.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Fixed Footer</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Collapsed Sidebar</p>
-                  </a>
-                </li>
-              </ul>
             </li>
           </ul>
         </nav>
@@ -200,36 +173,8 @@
   </div>
   <!-- ./wrapper -->
 
-  <!-- REQUIRED SCRIPTS -->
-  <!-- jQuery -->
-  <script src="<?php echo asset_url('plugins/jquery/jquery.min.js'); ?>"></script>
-  <!-- Bootstrap -->
-  <script src="<?php echo asset_url('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-  <!-- overlayScrollbars -->
-  <script src="<?php echo asset_url('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') ?>"></script>
-  <!-- AdminLTE App -->
-  <script src="<?php echo asset_url('js/adminlte.js') ?>"></script>
+  <?php echo $this->session->userdata('active_menu'); ?>
 
-  <!-- OPTIONAL SCRIPTS -->
-  <script src="<?= asset_url('js/demo.js') ?>"></script>
-
-  <!-- PAGE PLUGINS -->
-  <!-- jQuery Mapael -->
-  <script src="<?php echo asset_url('plugins/jquery-mousewheel/jquery.mousewheel.js') ?>"></script>
-  <script src="<?php echo asset_url('plugins/raphael/raphael.min.js') ?>"></script>
-  <script src="<?php echo asset_url('plugins/jquery-mapael/jquery.mapael.min.js') ?>"></script>
-  <script src="<?php echo asset_url('plugins/jquery-mapael/maps/usa_states.min.js') ?>"></script>
-
-  <!-- ChartJS -->
-  <script src="<?php echo asset_url('plugins/chart.js/Chart.min.js') ?>"></script>
-
-  <!-- base_url -->
-  <script>
-    const base_url = '<?php echo base_url() ?>';
-  </script>
-
-  <!-- PAGE SCRIPTS -->
-  <script src="<?php echo asset_url('js/pages/home.js') ?>"></script>
 </body>
 
 </html>
