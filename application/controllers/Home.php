@@ -37,7 +37,7 @@ class Home extends CI_Controller
   {
     $data['title'] = "Login Admin";
     if ($this->admin != "") {
-      $this->landing();
+      $this->landing_admin();
     } else {
       $this->load->view('login_admin', $data);
     }
@@ -47,14 +47,29 @@ class Home extends CI_Controller
   {
     $data = array();
     $data["title"] = "Web Login";
-    // $data["header"] = $this->app_model->profile($this->emplid);
     if ($this->emplid != "" || $this->admin != "") {
       $data['role'] = $this->app_model->master('role');
       $data['apps'] = $this->app_model->master('apps');
       $data['modules'] = $this->app_model->master('module');
       $data['akses'] = $this->app_model->master('hak_akses');
       $data["page"] = 'page/home';
-      $this->load->view('index2', $data);
+      $this->load->view('index', $data);
+    } else {
+      redirect();
+    }
+  }
+
+  function landing_admin()
+  {
+    $data = array();
+    $data["title"] = "Web Login";
+    if ($this->emplid != "" || $this->admin != "") {
+      $data['role'] = $this->app_model->master('role');
+      $data['apps'] = $this->app_model->master('apps');
+      $data['modules'] = $this->app_model->master('module');
+      $data['akses'] = $this->app_model->master('hak_akses');
+      $data["page"] = 'admin/admin';
+      $this->load->view('index', $data);
     } else {
       redirect();
     }
