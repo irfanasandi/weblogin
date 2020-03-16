@@ -34,10 +34,39 @@ class App extends CI_Controller
     $this->load->view('index_admin', $data);
   }
 
-  public function ajax()
+  function ajax()
   {
-    $apps = $this->app_model->master("apps")->result();
-    echo json_encode($apps);
+    $this->load->model('admin/apps_model');
+    $list = $this->apps_model->get_datatables();
+    $data = array();
+    $no = $_POST['start'];
+    foreach ($list as $rows) {
+      $no++;
+      $row = array();
+      $row[] = $no;
+      $row[] = $rows->app_id;
+      $row[] = $rows->name;
+      $row[] = $rows->link;
+      $row[] = $rows->icon;
+      $row[] = '<div class="action-buttons">
+            <div class="btn-group-vertical">
+							<a style="margin:2px;" type="button" class="btn btn-primary btn-sm" href="' . site_url('admin/event/edit/' . trim(base64_encode($rows->id), '=') . '') . '" >
+								<i class="ace-icon fa fa-pencil bigger-130"></i> Edit
+							</a>
+							<a style="margin:2px;" type="button" class="btn btn-primary btn-sm" href="#" data-href="' . site_url('admin/event/delete/' . trim(base64_encode($rows->id), '=') . '') . '" data-toggle="modal" data-target="#confirm-delete" >
+								<i class="ace-icon fa fa-trash bigger-130"></i> Remove
+							</a>
+						</div>
+					</div>';
+      $data[] = $row;
+    }
+    $output = array(
+      "draw" => $_POST['draw'],
+      "recordsTotal" => $this->apps_model->count_all(),
+      "recordsFiltered" => $this->apps_model->count_filtered(),
+      "data" => $data,
+    );
+    echo json_encode($output);
   }
 }
 

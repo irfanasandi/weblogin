@@ -10,10 +10,12 @@
           <table id="apps-table" class="table table-bordered table-hover">
             <thead>
               <tr>
+                <th>No</th>
                 <th>App Id</th>
                 <th>Name</th>
                 <th>Link</th>
                 <th>fa icon</th>
+                <th>#</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -42,11 +44,11 @@
           "targets": 0,
         },
         {
-          "targets": [10],
+          "targets": [5],
           "orderable": false,
           "width": "10%",
           "class": "text-center",
-          "targets": 10,
+          "targets": 5,
         },
       ],
     });
