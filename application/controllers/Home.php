@@ -17,7 +17,6 @@ class Home extends CI_Controller
     $this->levelid  = $this->session->userdata('levelid');
     $this->sessionid = $this->session->userdata('sessionid');
     $this->user_id = $this->session->userdata('user_id');
-    $this->admin = $this->session->userdata('admin');
 
     $this->load->model('app_model');
   }
@@ -33,21 +32,11 @@ class Home extends CI_Controller
     }
   }
 
-  function admin()
-  {
-    $data['title'] = "Login Admin";
-    if ($this->admin != "") {
-      $this->landing_admin();
-    } else {
-      $this->load->view('login_admin', $data);
-    }
-  }
-
   function landing()
   {
     $data = array();
     $data["title"] = "Web Login";
-    if ($this->emplid != "" || $this->admin != "") {
+    if ($this->emplid != "") {
       $data['role'] = $this->app_model->master('role');
       $data['apps'] = $this->app_model->master('apps');
       $data['modules'] = $this->app_model->master('module');
@@ -59,21 +48,6 @@ class Home extends CI_Controller
     }
   }
 
-  function landing_admin()
-  {
-    $data = array();
-    $data["title"] = "Web Login";
-    if ($this->emplid != "" || $this->admin != "") {
-      $data['role'] = $this->app_model->master('role');
-      $data['apps'] = $this->app_model->master('apps');
-      $data['modules'] = $this->app_model->master('module');
-      $data['akses'] = $this->app_model->master('hak_akses');
-      $data["page"] = 'admin/admin';
-      $this->load->view('index_admin', $data);
-    } else {
-      redirect();
-    }
-  }
 
   public function get_akses()
   {

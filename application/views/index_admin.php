@@ -81,7 +81,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-light-lightblue elevation-4">
       <!-- Brand Logo -->
-      <a href="<?= base_url(); ?>" class="brand-link navbar-light">
+      <a href="<?= base_url('admin'); ?>" class="brand-link navbar-light">
         <img src="<?= asset_url('erlangga.png'); ?>" alt="AdminLTE Logo" class="brand-image img-rounded elevation-3" style="opacity: 0.9">
         <span class="brand-text font-weight-BOLD">ERLANGGA LOGIN</span>
       </a>
@@ -104,7 +104,7 @@
             <!-- Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library -->
             <li class="nav-item">
-              <a href="<?= base_url(); ?>" class="nav-link" id="dashboard">
+              <a href="<?= base_url('admin'); ?>" class="nav-link" id="dashboard">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -112,7 +112,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url("app"); ?>" class="nav-link" id="applications">
+              <a href="<?= base_url("admin/app"); ?>" class="nav-link" id="applications">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Applications

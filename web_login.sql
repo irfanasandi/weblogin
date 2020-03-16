@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 24, 2020 at 07:41 AM
--- Server version: 5.7.17-log
+-- Generation Time: 16 Mar 2020 pada 07.36
+-- Versi Server: 5.7.17-log
 -- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -36,7 +36,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `name`, `level`, `active`) VALUES
@@ -45,28 +45,29 @@ INSERT INTO `admin` (`id`, `username`, `password`, `name`, `level`, `active`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `apps`
+-- Struktur dari tabel `apps`
 --
 
 CREATE TABLE `apps` (
   `id` int(11) NOT NULL,
   `app_id` varchar(21) NOT NULL,
   `name` varchar(125) NOT NULL,
-  `link` varchar(255) NOT NULL
+  `link` varchar(255) NOT NULL,
+  `icon` varchar(122) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apps`
+-- Dumping data untuk tabel `apps`
 --
 
-INSERT INTO `apps` (`id`, `app_id`, `name`, `link`) VALUES
-(1, 'APP01-WEBINFO', 'Web Info', 'http://10.1.1.60:8081/erl/myjualan/'),
-(2, 'APP01-WEBBOOKING', 'Web Booking', 'http://10.1.1.28:8081/booking_sys/');
+INSERT INTO `apps` (`id`, `app_id`, `name`, `link`, `icon`) VALUES
+(1, 'APP01-WEBINFO', 'Web Info', 'http://10.1.1.60:8081/erl/myjualan/', 'fa-info'),
+(2, 'APP02-WEBBOOKING', 'Web Booking', 'http://10.1.1.28:8081/booking_sys/', 'fa-book');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hak_akses`
+-- Struktur dari tabel `hak_akses`
 --
 
 CREATE TABLE `hak_akses` (
@@ -81,24 +82,24 @@ CREATE TABLE `hak_akses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `hak_akses`
+-- Dumping data untuk tabel `hak_akses`
 --
 
 INSERT INTO `hak_akses` (`id`, `role_id`, `app_id`, `module_id`, `a_create`, `a_read`, `a_update`, `a_delete`) VALUES
 (1, 1, 'APP01-WEBINFO', '1', 1, 1, 1, 1),
 (2, 1, 'APP01-WEBINFO', '2', 1, 1, 1, 1),
-(3, 3, 'APP01-WEBINFO', '2', 1, 0, 1, 1),
-(4, 1, 'APP01-WEBBOOKING', '3', 1, 1, 1, 1),
-(5, 2, 'APP01-WEBINFO', '1', 1, 1, 1, 1),
+(3, 3, 'APP01-WEBINFO', '2', 1, 1, 1, 1),
+(4, 1, 'APP02-WEBBOOKING', '3', 1, 1, 1, 1),
+(5, 2, 'APP01-WEBINFO', '1', 1, 1, 0, 0),
 (6, 3, 'APP01-WEBINFO', '1', 1, 1, 1, 1),
-(7, 2, 'APP01-WEBBOOKING', '3', 1, 1, 1, 1),
+(7, 2, 'APP02-WEBBOOKING', '3', 1, 1, 0, 0),
 (8, 2, 'APP01-WEBINFO', '2', 0, 0, 0, 0),
-(9, 3, 'APP01-WEBBOOKING', '3', 1, 1, 1, 1);
+(9, 3, 'APP02-WEBBOOKING', '3', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `module`
+-- Struktur dari tabel `module`
 --
 
 CREATE TABLE `module` (
@@ -110,18 +111,18 @@ CREATE TABLE `module` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `module`
+-- Dumping data untuk tabel `module`
 --
 
 INSERT INTO `module` (`id`, `app_id`, `description`, `status`, `name`) VALUES
 (1, 'APP01-WEBINFO', 'Item Master', '1', 'itemmaster'),
 (2, 'APP01-WEBINFO', 'Bursa Stock', '1', 'bursastock'),
-(3, 'APP01-WEBBOOKING', 'Booking Cart', '1', 'bookingcart');
+(3, 'APP02-WEBBOOKING', 'Booking Cart', '1', 'bookingcart');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Struktur dari tabel `role`
 --
 
 CREATE TABLE `role` (
@@ -130,7 +131,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `role`
+-- Dumping data untuk tabel `role`
 --
 
 INSERT INTO `role` (`id`, `name`) VALUES
@@ -141,7 +142,7 @@ INSERT INTO `role` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -158,11 +159,11 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id`, `emplid`, `name`, `password`, `email`, `telp`, `bu`, `role_id`, `token`, `image`) VALUES
-(1, 'P2308', 'Irfana Sandi', 'sandi123', NULL, NULL, '', 1, NULL, '');
+(1, 'user', 'Irfana Sandi', '1', NULL, NULL, '', 1, NULL, '');
 
 --
 -- Indexes for dumped tables
@@ -239,7 +240,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

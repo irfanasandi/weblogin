@@ -30,8 +30,14 @@ class App extends CI_Controller
 
     $data['title'] = "APP LIST";
     $data['header'] = "List Aplikasi";
-    $data["page"] = 'page/app';
+    $data["page"] = 'admin/app';
     $this->load->view('index_admin', $data);
+  }
+
+  public function ajax()
+  {
+    $apps = $this->app_model->master("apps")->result();
+    echo json_encode($apps);
   }
 }
 
