@@ -69,7 +69,7 @@ class Home extends CI_Controller
       $data['modules'] = $this->app_model->master('module');
       $data['akses'] = $this->app_model->master('hak_akses');
       $data["page"] = 'admin/admin';
-      $this->load->view('index', $data);
+      $this->load->view('index_admin', $data);
     } else {
       redirect();
     }

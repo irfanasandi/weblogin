@@ -25,13 +25,13 @@ class App extends CI_Controller
   public function index()
   {
     if ($this->admin == "" && $this->user_id == "") {
-      redirect('home');
+      redirect('home/admin');
     }
 
     $data['title'] = "APP LIST";
-    $data['header'] = "List Applikasi";
+    $data['header'] = "List Aplikasi";
     $data["page"] = 'page/app';
-    $this->load->view('index2', $data);
+    $this->load->view('index_admin', $data);
   }
 }
 
