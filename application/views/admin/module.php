@@ -9,17 +9,17 @@
         <div class="card-body">
           <div class="col-md-2 mb-3">
             <button type="button" class="btn" style="background: #3c8dbc;color:#fff" data-toggle="modal" data-target="#modal-add">
-              TAMBAH APP
+              TAMBAH MODULE
             </button>
           </div>
           <table id="apps-table" class="table table-bordered table-hover">
             <thead>
               <tr>
                 <th>No</th>
-                <th>App Id</th>
                 <th>Name</th>
-                <th>Link</th>
-                <th>fa icon</th>
+                <th>App Id</th>
+                <th>Description</th>
+                <th>Active</th>
                 <th>#</th>
               </tr>
             </thead>
@@ -38,8 +38,8 @@ if ($this->session->flashdata('info')) {
   echo "<script>toastr.success('" . $this->session->flashdata('info') . "')</script>";
 }
 
-$this->load->view('admin/app_add');
-$this->load->view('admin/app_edit');
+$this->load->view('admin/module_add');
+$this->load->view('admin/module_edit');
 ?>
 
 <script type="text/javascript">
@@ -49,7 +49,7 @@ $this->load->view('admin/app_edit');
       "serverSide": true,
       "order": [],
       "ajax": {
-        "url": "<?php echo site_url('admin/app/ajax') ?>",
+        "url": "<?php echo site_url('admin/module/ajax') ?>",
         "type": "POST",
       },
       "columnDefs": [{
@@ -63,7 +63,7 @@ $this->load->view('admin/app_edit');
           "orderable": false,
           "width": "10%",
           "class": "text-center",
-          "targets": 5,
+          "targets": 4,
         },
       ],
     });

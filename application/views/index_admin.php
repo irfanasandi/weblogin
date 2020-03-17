@@ -16,9 +16,14 @@
   <link rel="stylesheet" href="<?php echo asset_url('css/adminlte.css') ?>">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="<?php echo asset_url('plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="<?php echo asset_url('plugins/toastr/toastr.min.css') ?>">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?php echo asset_url('plugins/select2/css/select2.min.css') ?>" />
+  <link rel="stylesheet" href="<?php echo asset_url('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') ?>" />
+
 
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
@@ -36,14 +41,15 @@
   <script src="<?php echo asset_url('plugins/raphael/raphael.min.js') ?>"></script>
   <script src="<?php echo asset_url('plugins/jquery-mapael/jquery.mapael.min.js') ?>"></script>
   <script src="<?php echo asset_url('plugins/jquery-mapael/maps/usa_states.min.js') ?>"></script>
-
   <!-- datatables -->
   <script src="<?php echo asset_url('plugins/datatables/jquery.dataTables.js') ?>"></script>
   <script src="<?php echo asset_url('plugins/datatables-bs4/js/dataTables.bootstrap4.js') ?>"></script>
-
   <!-- ChartJS -->
   <script src="<?php echo asset_url('plugins/chart.js/Chart.min.js') ?>"></script>
-
+  <!-- Toastr -->
+  <script src="<?php echo asset_url('plugins/toastr/toastr.min.js'); ?>"></script>
+  <!-- Select2 -->
+  <script src="<?php echo asset_url('plugins/select2/js/select2.full.min.js') ?>"></script>
   <!-- base_url -->
   <script>
     const base_url = '<?php echo base_url() ?>'
@@ -116,6 +122,14 @@
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Applications
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url("admin/module"); ?>" class="nav-link" id="module">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                  Pages
                 </p>
               </a>
             </li>

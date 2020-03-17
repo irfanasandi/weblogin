@@ -2,18 +2,16 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class App extends CI_Controller
+class Module extends CI_Controller
 {
 
   public function __construct()
   {
     parent::__construct();
 
-    $this->navigasi->set_active_menu('applications');
+    $this->navigasi->set_active_menu('module');
 
     $this->name  = $this->session->userdata('name');
-    $this->emplid  = $this->session->userdata('emplid');
-    $this->bu    = $this->session->userdata('bu');
     $this->levelid  = $this->session->userdata('levelid');
     $this->sessionid = $this->session->userdata('sessionid');
     $this->user_id = $this->session->userdata('user_id');
@@ -25,19 +23,20 @@ class App extends CI_Controller
   public function index()
   {
     if ($this->admin == "") {
-      redirect('admin/admin');
+      redirect('home/admin');
     }
 
-    $data['title'] = "APP LIST";
-    $data['header'] = "List Aplikasi";
-    $data["page"] = 'admin/app';
+    $data['title'] = "APP MODULE LIST";
+    $data['header'] = "List App Module";
+    $data['apps'] = $this->app_model->master("apps");
+    $data["page"] = 'admin/module';
     $this->load->view('index_admin', $data);
   }
 
   function ajax()
   {
-    $this->load->model('admin/apps_model');
-    $list = $this->apps_model->get_datatables();
+    $this->load->model('admin/module_model');
+    $list = $this->module_model->get_datatables();
     $data = array();
     $no = $_POST['start'];
     foreach ($list as $rows) {
@@ -46,8 +45,8 @@ class App extends CI_Controller
       $row[] = $no;
       $row[] = $rows->app_id;
       $row[] = $rows->name;
-      $row[] = $rows->link;
-      $row[] = $rows->icon;
+      $row[] = $rows->description;
+      $row[] = $rows->status;
       $row[] = '<div class="action-buttons">
             <div class="btn-group-vertical">
 							<a style="margin:2px;" type="button" class="btn btn-primary btn-sm edit-btn" data-id="' . $rows->id . '" href="#" data-toggle="modal" data-target="#modal-edit">
@@ -62,8 +61,8 @@ class App extends CI_Controller
     }
     $output = array(
       "draw" => $_POST['draw'],
-      "recordsTotal" => $this->apps_model->count_all(),
-      "recordsFiltered" => $this->apps_model->count_filtered(),
+      "recordsTotal" => $this->module_model->count_all(),
+      "recordsFiltered" => $this->module_model->count_filtered(),
       "data" => $data,
     );
     echo json_encode($output);
@@ -92,7 +91,7 @@ class App extends CI_Controller
 
   function edit($id = null)
   {
-    $data =  $this->app_model->edit("apps", "id='" . $id . "'")->result();
+    $data =  $this->app_model->edit("module", "id='" . $id . "'")->result();
 
     echo json_encode($data);
   }

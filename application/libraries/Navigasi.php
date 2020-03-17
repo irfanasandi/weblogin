@@ -15,5 +15,8 @@ class Navigasi
 		if ($param == 'applications') {
 			$this->CI->session->set_userdata('active_menu', '<script>$("#applications").addClass("active");</script>');
 		}
+		if ($param == 'module') {
+			$this->CI->session->set_userdata('active_menu', '<script>$("#module").addClass("active");</script>');
+		}
 	}
 }
