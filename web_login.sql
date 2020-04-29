@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 18 Mar 2020 pada 03.02
+-- Generation Time: 29 Apr 2020 pada 01.36
 -- Versi Server: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -61,7 +61,7 @@ CREATE TABLE `apps` (
 --
 
 INSERT INTO `apps` (`id`, `app_id`, `name`, `link`, `icon`) VALUES
-(1, 'APP01-WEBINFO', 'Web Info', 'http://10.1.1.60:8081/erl/myjualan/', 'fa-info'),
+(1, 'APP01-WEBINFO', 'Web Info', 'http://localhost/new-web-info', 'fa-info'),
 (2, 'APP02-WEBBOOKING', 'Web Booking', 'http://10.1.1.28:8081/booking_sys/', 'fa-book');
 
 -- --------------------------------------------------------
@@ -94,7 +94,15 @@ INSERT INTO `hak_akses` (`id`, `role_id`, `app_id`, `module_id`, `a_create`, `a_
 (6, 3, 'APP01-WEBINFO', '1', 1, 1, 1, 1),
 (7, 2, 'APP02-WEBBOOKING', '3', 1, 1, 0, 0),
 (8, 2, 'APP01-WEBINFO', '2', 0, 0, 0, 0),
-(9, 3, 'APP02-WEBBOOKING', '3', 1, 1, 1, 1);
+(9, 3, 'APP02-WEBBOOKING', '3', 1, 1, 1, 1),
+(10, 4, 'APP01-WEBINFO', '1', 1, 1, 1, 1),
+(11, 4, 'APP01-WEBINFO', '2', 1, 1, 1, 1),
+(12, 5, 'APP01-WEBINFO', '1', 1, 1, 1, 1),
+(13, 5, 'APP01-WEBINFO', '2', 1, 1, 1, 1),
+(14, 6, 'APP01-WEBINFO', '1', 1, 1, 1, 1),
+(15, 6, 'APP01-WEBINFO', '2', 1, 1, 1, 1),
+(16, 7, 'APP01-WEBINFO', '1', 1, 1, 1, 1),
+(17, 7, 'APP01-WEBINFO', '2', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -137,7 +145,11 @@ CREATE TABLE `role` (
 INSERT INTO `role` (`id`, `name`) VALUES
 (1, 'IT'),
 (2, 'Akunting'),
-(3, 'Marketing');
+(3, 'Marketing'),
+(4, 'MGR'),
+(5, 'ASM'),
+(6, 'GL'),
+(7, 'SLS');
 
 -- --------------------------------------------------------
 
@@ -163,7 +175,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `emplid`, `name`, `password`, `email`, `telp`, `bu`, `role_id`, `token`, `image`) VALUES
-(1, 'user', 'Irfana Sandi', '1', NULL, NULL, '', 1, NULL, '');
+(1, 'user', 'Irfana Sandi', '1', NULL, NULL, '50', 1, NULL, ''),
+(2, 'J1393', 'Manager', '1', NULL, NULL, '51', 4, NULL, NULL),
+(3, 'J2674', 'ASM', '1', NULL, NULL, '51', 5, NULL, NULL),
+(4, 'J2376', 'GL', '1', NULL, NULL, '51', 6, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -220,12 +235,12 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `apps`
 --
 ALTER TABLE `apps`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `hak_akses`
 --
 ALTER TABLE `hak_akses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `module`
 --
@@ -235,12 +250,12 @@ ALTER TABLE `module`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
