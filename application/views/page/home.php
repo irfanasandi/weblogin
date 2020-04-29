@@ -17,7 +17,7 @@ $box_color = ['info', 'success', 'warning', 'danger'];
               <i class="fas <?= $app->icon; ?>"></i>
             </div>
             <a href="<?= $app->link; ?>" class="small-box-footer" target="_blank">
-              More info <i class="fas fa-arrow-circle-right"></i>
+              Go <i class="fas fa-arrow-circle-right"></i>
             </a>
           </div>
         </div>

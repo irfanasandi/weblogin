@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 16 Mar 2020 pada 07.36
+-- Generation Time: 18 Mar 2020 pada 03.02
 -- Versi Server: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -220,7 +220,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `apps`
 --
 ALTER TABLE `apps`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `hak_akses`
 --
